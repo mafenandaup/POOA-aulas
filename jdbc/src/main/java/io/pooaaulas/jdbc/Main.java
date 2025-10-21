@@ -56,7 +56,20 @@ public class Main {
                 System.out.printf("%d - %s (%s)%n",
                         rs.getInt("id"), rs.getString("nome"), rs.getString("matricula"));
             }
-        } catch (SQLException e) {
+
+            ResultSet rsConstraint = stmt.executeQuery("SELECT nome FROM alunos WHERE nome LIKE '%u%'");
+                System.out.println("\n--- APENAS NOMES COM U ---");
+                while (rsConstraint.next()) {
+                    System.out.printf("%s%n", rsConstraint.getString("nome"));
+}
+
+                    ResultSet rsExample = stmt.executeQuery("SELECT  id, nome, matricula FROM alunos WHERE id <= 4556305 ");
+                    System.out.println("\n--- SÓ ID menores ou iguais a  4556305 ---");
+            while (rsExample.next()) {
+                System.out.printf("%d - %s (%s)%n",
+                        rsExample.getInt("id"), rsExample.getString("nome"), rsExample.getString("matricula"));
+            }
+            }catch (SQLException e) {
             throw new RuntimeException(e);
         }
         System.out.println("Conectado!");
