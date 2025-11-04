@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 public class RegionsHash {
 
-    private HashMap<Integer, String> mapaRegioes;
-
+    private String cpf;
+    private static HashMap<Integer, String> mapaRegioes = new HashMap<>();
     public RegionsHash() {
-        mapaRegioes = new HashMap<>();
+        HashMap<Integer, String> mapaRegioes = new HashMap<>();
 
         mapaRegioes.put(0, "Rio Grande do Sul");
         mapaRegioes.put(1, "Distrito Federal, Goiás, Mato Grosso, Mato Grosso do Sul e Tocantins");
@@ -19,6 +19,19 @@ public class RegionsHash {
         mapaRegioes.put(7, "Rio de Janeiro e Espírito Santo");
         mapaRegioes.put(8, "São Paulo");
         mapaRegioes.put(9, "Paraná e Santa Catarina");
+    }
+
+    public static String matchRegions(String cpf){
+        char digitoRegiaoChar = cpf.charAt(8);
+        int digitoRegiao = Character.getNumericValue(digitoRegiaoChar);
+
+        // Busca a região no mapa
+        if (mapaRegioes.containsKey(digitoRegiao)){
+            System.out.println( mapaRegioes.get(digitoRegiao));
+            return mapaRegioes.get(digitoRegiao);
+        } else {
+            return "região desconhecida: " + digitoRegiao;
+        }
     }
 
 }

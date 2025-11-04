@@ -1,9 +1,5 @@
 package org.example;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import org.example.RegionsHash;
 
 
 public class Validador {
@@ -27,6 +23,8 @@ public class Validador {
             System.out.println("CPF inválido.");
             return false;
         }
+
+        RegionsHash.matchRegions(cpf);
 
         return  true;
     }
